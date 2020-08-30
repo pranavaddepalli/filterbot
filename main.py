@@ -1,4 +1,5 @@
 import discord
+import os
 
 client = discord.Client()
 banned = []
@@ -53,4 +54,4 @@ async def on_message(message):
             await message.channel.send(" ".join(custom_responses[user]))
             
 
-client.run()
+client.run(os.environ['TOKEN'])
