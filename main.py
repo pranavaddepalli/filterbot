@@ -53,5 +53,5 @@ async def on_message(message):
         if message.author == user:
             await message.channel.send(" ".join(custom_responses[user]))
             
-
+# run with environment variable token
 client.run(os.environ['TOKEN'])
