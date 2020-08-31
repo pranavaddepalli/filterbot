@@ -40,7 +40,7 @@ async def on_message(message):
     
     if message.content.startswith('t$filteroff'):
         word = message.content.lower().split()[1:]
-        banned.remove(" ".join(word))
+        banned.remove(word[0])
         await message.channel.send('Removed ' + word + 'from the banned list')
         return
 
