@@ -57,7 +57,9 @@ async def on_message(message):
             return m.channel == message.channel and m.author == message.author
 
         replyto_content = await client.wait_for('message', check=replyto_check)
-        custom_replyto[" ".join(replyto_text)] = replyto_content
+        print(type(replyto_text))
+        print(type(replyto_content))
+        custom_replyto[replyto_text] = replyto_content
         return
 
 
