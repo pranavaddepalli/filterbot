@@ -45,7 +45,7 @@ async def on_message(message):
         return
 
     if message.content.startswith('t$clearcustomresponses'):
-        custom_responses = []
+        custom_responses = {}
         await message.channel.send('Custom responses cleared')
         return
 
@@ -53,6 +53,7 @@ async def on_message(message):
         respondto_user = message.mentions[0]
         respondto_content = message.content.split()[2:]
         custom_responses[respondto_user] = respondto_content
+        await message.channel.send('added to custom responses')
         return
 
     if message.content.startswith('t$replyto'):
