@@ -18,6 +18,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if message.content.startswith('t$currentversion'):
+        await message.channel.send('version' + '13')
+        return
+
     if message.content.startswith('t$addfilter'):
         banned_words = message.content.lower().split()[1:]
         banned += banned_words
@@ -36,8 +40,8 @@ async def on_message(message):
     
     if message.content.startswith('t$filteroff'):
         word = message.content.lower().split()[1:]
-        banned.remove(word)
         print(type(word))
+        banned.remove(word)
         await message.channel.send('Removed ' + word + 'from the banned list')
         return
 
