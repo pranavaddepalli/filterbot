@@ -14,6 +14,7 @@ async def on_ready():
 async def on_message(message):
     global banned
     global custom_responses
+    global custom_replyto
     if message.author == client.user:
         return
 
