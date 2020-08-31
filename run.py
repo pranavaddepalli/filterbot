@@ -35,6 +35,8 @@ async def on_message(message):
     
     if message.content.startswith('t$deletebanned'):
         word = message.content.lower()
+        banned.remove(word)
+        return
 
     if message.content.startswith('t$clearcustomresponses'):
         custom_responses = []
@@ -45,6 +47,7 @@ async def on_message(message):
         respondto_user = message.mentions[0]
         respondto_content = message.content.split()[2:]
         custom_responses[respondto_user] = respondto_content
+        return
 
     if message.content.startswith('t$replyto'):
         replyto_text = message.content.split()[1:]
@@ -54,7 +57,8 @@ async def on_message(message):
             return m.channel == message.channel and m.author == message.author
 
         replyto_content = await client.wait_for('message', check=replyto_check)
-        custom_replyto[replyto_text] = replyto_content
+        custom_replyto[" ".join(replyto_text)] = replyto_content
+        return
 
 
 
