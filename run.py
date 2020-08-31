@@ -33,9 +33,10 @@ async def on_message(message):
         await message.channel.send('Banned list cleared')
         return
     
-    if message.content.startswith('t$deletebanned'):
-        word = message.content.lower()
+    if message.content.startswith('t$filteroff'):
+        word = message.content.lower().split()[1:]
         banned.remove(word)
+        await message.channel.send('Removed ' + word + 'from the banned list')
         return
 
     if message.content.startswith('t$clearcustomresponses'):
@@ -64,6 +65,18 @@ async def on_message(message):
         await message.channel.send("Done! Added to the custom replies list")
         return
 
+    if message.content.startswith('t$customreplies'):
+        await message.channel.send('Current custom replies: ' + str(custom_replyto))
+        return
+    
+    if message.content.startswith('t$customresponses'):
+        await message.channel.send('Current custom responses: ' + str(custom_responses))
+        return
+
+    if message.content.startswith('t$clearcustomreplies'):
+        custom_replyto = {}
+        await message.channel.send('Custom replies cleared')
+        return
 
 
 # evaluate messages
@@ -79,7 +92,7 @@ async def on_message(message):
     
     for text in custom_replyto.keys():
         if text in message.content.lower():
-            await message.channel.send(" ".join(custom_replyto[text]))
+            await message.channel.send(custom_replyto[text])
 
 # run with environment variable token
 client.run(os.environ['TOKEN'])
