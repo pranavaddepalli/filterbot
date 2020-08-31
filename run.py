@@ -19,7 +19,7 @@ async def on_message(message):
         return
 
     if message.content.startswith('t$currentversion'):
-        await message.channel.send('version' + '14')
+        await message.channel.send('version' + '15')
         return
 
     if message.content.startswith('t$addfilter'):
@@ -91,7 +91,7 @@ async def on_message(message):
             await message.delete()
             await message.channel.send('You can\'t say that here! I deleted your message.')
 
-    for user in custom_responses.keys():
+    for user in custom_responses:
         if message.author == user:
             await message.channel.send(" ".join(custom_responses[user]))
     
