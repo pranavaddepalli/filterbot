@@ -18,7 +18,7 @@ async def on_message(message):
         return
 
     if message.content.startswith('t$addfilter'):
-        banned_words = message.content.lower.split()[1:]
+        banned_words = message.content.lower().split()[1:]
         banned += banned_words
         print(banned)
         await message.channel.send('The following was added to the banned words list: ' + str(banned))
@@ -33,6 +33,9 @@ async def on_message(message):
         await message.channel.send('Banned list cleared')
         return
     
+    if message.content.startswith('t$deletebanned'):
+        word = message.content.lower()
+
     if message.content.startswith('t$clearcustomresponses'):
         custom_responses = []
         await message.channel.send('Custom responses cleared')
